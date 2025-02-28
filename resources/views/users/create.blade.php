@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ 'Users' }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -15,7 +9,7 @@
                         <ol class="flex space-x-2 text-gray-600">
                             <li>Users</li>
                             <li>/</li>
-                            <li class="text-gray-800 font-semibold">List</li>
+                            <li class="text-gray-800 font-semibold">Add</li>
                         </ol>
                     </nav>
 
@@ -48,12 +42,21 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="password" class="block text-gray-700 font-medium mb-1">Password</label>
-                            <input type="password" id="password" name="password"
-                                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                            @error('password')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                            <div class="mb-4" x-data="{ show: false }">
+                                <label for="password" class="block text-gray-700 font-medium mb-1">Password</label>
+                                <div class="relative">
+                                    <input :type="show ? 'text' : 'password'" id="password" name="password"
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10">
+                                    <button type="button" @click="show = !show"
+                                        class="absolute inset-y-0 right-3 flex items-center text-gray-600">
+                                        <x-heroicon-o-eye x-show="!show" class="w-5 h-5" />
+                                        <x-heroicon-o-eye-slash x-show="show" class="w-5 h-5" />
+                                    </button>
+                                </div>
+                                @error('password')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
 
                         {{-- <div class="mb-4">
@@ -67,7 +70,7 @@
                             </select>
                         </div> --}}
 
-                        <div class="flex justify-center">
+                        <div class="flex justify-center mt-5">
                             <x-primary-button type="submit"
                                 class="flex items-center gap-2 text-white hover:text-white">
                                 <span>Save</span>

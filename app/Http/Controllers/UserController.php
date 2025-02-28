@@ -70,7 +70,7 @@ class UserController extends Controller
 
         // Only hash and update password if a new one is provided
         if (!empty($data['password'])) {
-            $data['password'] = Hash::make($data['password']);
+            $data['password'];
         } else {
             unset($data['password']); // Remove password field so it doesn't override the old one
         }

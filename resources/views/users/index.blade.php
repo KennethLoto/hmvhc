@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ 'Users' }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -19,7 +13,7 @@
                         </ol>
                     </nav>
 
-                    <a href="{{ route('users.create') }}" class="mb-4 flex justify-between items-center">
+                    <a href="{{ route('users.create') }}" class="justify-start items-center">
                         <x-primary-button class="flex items-center gap-2">
                             <x-heroicon-o-plus-circle class="w-5 h-5" />
                             <span>Add</span>
