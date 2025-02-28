@@ -3,4 +3,4 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('users', UserController::class)->only(['index', 'create', 'edit', 'show', 'update', 'destroy', 'store'])->middleware(['auth', 'verified']);
+Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
