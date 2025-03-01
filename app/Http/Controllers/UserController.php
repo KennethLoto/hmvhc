@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller

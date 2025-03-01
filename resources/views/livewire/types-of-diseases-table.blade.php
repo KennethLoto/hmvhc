@@ -19,32 +19,32 @@
                 <thead class="bg-gray-800 text-white">
                     <tr>
                         <th class="px-4 py-3 text-left border-2 text-sm">ID</th>
-                        <th class="px-4 py-3 text-left border-2 text-sm">Name</th>
-                        <th class="px-4 py-3 text-left border-2 text-sm">Email</th>
-                        <th class="px-4 py-3 text-left border-2 text-sm">Created At</th>
-                        <th class="px-4 py-3 text-left border-2 text-sm">Email Verified At</th>
+                        <th class="px-4 py-3 text-left border-2 text-sm">Name of Disease</th>
+                        <th class="px-4 py-3 text-left border-2 text-sm">Short Description</th>
+                        <th class="px-4 py-3 text-left border-2 text-sm">Category</th>
                         <th class="px-4 py-3 text-left border-2 text-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($users->isEmpty())
+                    @if ($typesOfDiseases->isEmpty())
                         <tr>
                             <td colspan="5" class="px-4 py-3 text-center text-gray-500 border-2">
                                 No data available.
                             </td>
                         </tr>
                     @else
-                        @foreach ($users as $user)
+                        @foreach ($typesOfDiseases as $typesOfDisease)
                             <tr class="border">
                                 <td class="px-4 py-3 border-2">
-                                    {{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}</td>
-                                <td class="px-4 py-3 border-2">{{ $user->name }}</td>
-                                <td class="px-4 py-3 border-2">{{ $user->email }}</td>
-                                <td class="px-4 py-3 border-2">{{ $user->created_at }}</td>
-                                <td class="px-4 py-3 border-2">{{ $user->email_verified_at ?? 'N/A' }}</td>
+                                    {{ ($typesOfDiseases->currentPage() - 1) * $typesOfDiseases->perPage() + $loop->iteration }}
+                                </td>
+                                <td class="px-4 py-3 border-2">{{ $typesOfDisease->nameOfDisease }}</td>
+                                <td class="px-4 py-3 border-2">{{ $typesOfDisease->shortDescription }}</td>
+                                <td class="px-4 py-3 border-2">{{ $typesOfDisease->category }}</td>
                                 <td class="px-4 py-3 border-2">
                                     <div class="flex flex-wrap gap-2">
-                                        <a href="{{ route('users.edit', $user->id) }}" class="w-full sm:w-auto">
+                                        <a href="{{ route('typesOfDiseases.edit', $typesOfDisease->id) }}"
+                                            class="w-full sm:w-auto">
                                             <x-primary-button
                                                 class="flex items-center justify-center w-full sm:w-auto min-w-[120px]">
                                                 <x-heroicon-o-pencil-square class="w-5 h-5 mr-1" />
@@ -52,8 +52,8 @@
                                             </x-primary-button>
                                         </a>
 
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                            class="w-full sm:w-auto">
+                                        <form action="{{ route('typesOfDiseases.destroy', $typesOfDisease->id) }}"
+                                            method="POST" class="w-full sm:w-auto">
                                             @csrf
                                             @method('DELETE')
                                             <x-primary-button type="submit"
@@ -70,10 +70,11 @@
                 </tbody>
             </table>
         </div>
+
         <!-- Pagination -->
-        @if ($users->isNotEmpty())
+        @if ($typesOfDiseases->isNotEmpty())
             <div class="mt-4">
-                {{ $users->links() }}
+                {{ $typesOfDiseases->links() }}
             </div>
         @endif
     </div>

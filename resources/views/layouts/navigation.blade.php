@@ -4,11 +4,11 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="flex items-center space-x-4">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="h-10 w-auto text-gray-700" />
                     </a>
-                    <h1 class="ml-2 text-white font-semibold text-lg">HMHC</h1>
+                    <span class="text-xl font-semibold text-gray-900 tracking-wide">HMHC</span>
                 </div>
             </div>
 
@@ -75,6 +75,9 @@
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                 {{ 'Users' }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('typesOfDiseases.index')" :active="request()->routeIs('typesOfDiseases.index')">
+                {{ 'Types of Diseases' }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -116,6 +119,11 @@
                         request()->routeIs('users.create') ||
                         request()->routeIs('users.edit')">
                         {{ 'Users' }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('typesOfDiseases.index')" :active="request()->routeIs('typesOfDiseases.index') ||
+                        request()->routeIs('typesOfDiseases.create') ||
+                        request()->routeIs('typesOfDiseases.edit')">
+                        {{ 'Types of Diseases' }}
                     </x-nav-link>
                 </div>
             </div>
