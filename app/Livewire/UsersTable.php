@@ -14,6 +14,8 @@ class UsersTable extends Component
 
     public $perPage = 5;
 
+    // protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
         return view('livewire.users-table', [

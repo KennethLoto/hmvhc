@@ -1,24 +1,21 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h1 class="text-2xl font-semibold mb-4">Edit User</h1>
 
-                    <nav class="text-sm mb-4">
-                        <ol class="flex space-x-2 text-gray-600">
+                    <nav class="text-lg mb-4">
+                        <ol class="flex items-center space-x-2 text-gray-600">
+                            <li class="flex items-center">
+                                <x-heroicon-o-user-group class="w-5 h-5" />
+                            </li>
                             <li>Users</li>
                             <li>/</li>
+                            <li>List</li>
+                            <li>></li>
                             <li class="text-gray-800 font-semibold">Edit</li>
                         </ol>
                     </nav>
-
-                    <a href="{{ route('users.index') }}" class="mb-4 flex justify-between items-center">
-                        <x-primary-button class="flex items-center gap-2">
-                            <x-heroicon-o-arrow-uturn-left class="w-5 h-5" />
-                            <span>Back</span>
-                        </x-primary-button>
-                    </a>
 
                     <form action="{{ route('users.update', $user->id) }}" method="POST" class="mt-4">
                         @csrf
@@ -61,7 +58,15 @@
                             </div>
                         </div>
 
-                        <div class="flex justify-center">
+                        <div class="flex justify-end space-x-4">
+                            <a href="{{ route('users.index') }}">
+                                <x-secondary-button
+                                    class="flex items-center gap-2 border border-gray-600 text-gray-700 hover:bg-gray-100">
+                                    <x-heroicon-o-x-circle class="w-5 h-5" />
+                                    <span>Cancel</span>
+                                </x-secondary-button>
+                            </a>
+
                             <x-primary-button type="submit"
                                 class="flex items-center gap-2 text-white hover:text-white">
                                 <span>Save Changes</span>

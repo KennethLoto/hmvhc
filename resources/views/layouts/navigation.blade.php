@@ -8,7 +8,10 @@
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="h-10 w-auto text-gray-700" />
                     </a>
-                    <span class="text-xl font-semibold text-gray-900 tracking-wide">HMHC</span>
+                    <!-- Title -->
+                    <span class="text-2xl font-bold text-gray-800">
+                        HMHC
+                    </span>
                 </div>
             </div>
 
@@ -18,10 +21,11 @@
                     <x-slot name="trigger">
                         <button
                             class="inline-flex items-center px-3 py-2 border text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <x-heroicon-o-user-circle class="h-5 w-5 mr-2" />
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -32,18 +36,20 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ 'Profile' }}
+                        <x-dropdown-link :href="route('profile.edit')" class="flex items-center">
+                            <x-heroicon-o-user-plus class="h-5 w-5 mr-2" />
+                            <span>Profile</span>
                         </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ 'Log Out' }}
+                                         this.closest('form').submit();"
+                                class="flex items-center">
+                                <x-heroicon-o-arrow-left-end-on-rectangle class="h-5 w-5 mr-2" />
+                                <span>Log Out</span>
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -70,13 +76,24 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ 'Dashboard' }}
+                <div class="flex items-center">
+                    <x-heroicon-o-rectangle-group class="w-5 h-5 mr-2" />
+                    <span>{{ 'DASHBOARD' }}</span>
+                </div>
             </x-responsive-nav-link>
+
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                {{ 'Users' }}
+                <div class="flex items-center">
+                    <x-heroicon-o-user-group class="w-5 h-5 mr-2" />
+                    <span>{{ 'USERS' }}</span>
+                </div>
             </x-responsive-nav-link>
+
             <x-responsive-nav-link :href="route('typesOfDiseases.index')" :active="request()->routeIs('typesOfDiseases.index')">
-                {{ 'Types of Diseases' }}
+                <div class="flex items-center">
+                    <x-heroicon-o-link-slash class="w-5 h-5 mr-2" />
+                    <span>{{ 'TYPES OF DISEASES' }}</span>
+                </div>
             </x-responsive-nav-link>
         </div>
 
@@ -88,7 +105,8 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('profile.edit')" class="flex items-center">
+                    <x-heroicon-o-user-plus class="h-5 w-5 mr-2" />
                     {{ 'Profile' }}
                 </x-responsive-nav-link>
 
@@ -98,7 +116,10 @@
 
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                        this.closest('form').submit();"
+                        class="flex items-center">
+                        <x-heroicon-o-arrow-left-end-on-rectangle class="h-5 w-5 mr-2" />
+
                         {{ 'Log Out' }}
                     </x-responsive-nav-link>
                 </form>
@@ -113,17 +134,20 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ 'Dashboard' }}
+                        <x-heroicon-o-rectangle-group class="w-5 h-5 mr-2" />
+                        {{ 'DASHBOARD' }}
                     </x-nav-link>
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index') ||
                         request()->routeIs('users.create') ||
                         request()->routeIs('users.edit')">
-                        {{ 'Users' }}
+                        <x-heroicon-o-user-group class="w-5 h-5 mr-2" />
+                        {{ 'USERS' }}
                     </x-nav-link>
                     <x-nav-link :href="route('typesOfDiseases.index')" :active="request()->routeIs('typesOfDiseases.index') ||
                         request()->routeIs('typesOfDiseases.create') ||
                         request()->routeIs('typesOfDiseases.edit')">
-                        {{ 'Types of Diseases' }}
+                        <x-heroicon-o-link-slash class="w-5 h-5 mr-2" />
+                        {{ 'TYPES OF DISEASES' }}
                     </x-nav-link>
                 </div>
             </div>
