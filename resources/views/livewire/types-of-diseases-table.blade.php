@@ -54,11 +54,11 @@
                                     <div class="flex flex-col lg:flex-row gap-2">
                                         <a href="{{ route('typesOfDiseases.edit', $typesOfDisease->id) }}"
                                             class="w-full lg:w-auto">
-                                            <x-primary-button
+                                            <x-secondary-button
                                                 class="flex items-center justify-center w-full lg:w-auto min-w-[110px]">
                                                 <x-heroicon-o-pencil-square class="w-5 h-5 mr-1" />
                                                 <span>Edit</span>
-                                            </x-primary-button>
+                                            </x-secondary-button>
                                         </a>
 
                                         <form action="{{ route('typesOfDiseases.destroy', $typesOfDisease->id) }}"

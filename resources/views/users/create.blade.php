@@ -12,7 +12,7 @@
                             <li>Users</li>
                             <li>/</li>
                             <li>List</li>
-                            <li>></li>
+                            <li>/</li>
                             <li class="text-gray-800 font-semibold">Add</li>
                         </ol>
                     </nav>
@@ -67,8 +67,8 @@
 
                             <x-primary-button type="submit"
                                 class="flex items-center gap-2 text-white hover:text-white">
-                                <span>Save</span>
                                 <x-heroicon-o-check-badge class="w-5 h-5 inline" />
+                                <span>Save</span>
                             </x-primary-button>
                         </div>
                     </form>

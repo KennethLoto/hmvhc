@@ -93,7 +93,7 @@
         </div>
         <!-- Pagination -->
         @if ($users->isNotEmpty())
-            <div class="mt-4">
+            <div class="mt-5">
                 {{ $users->links() }}
             </div>
         @endif

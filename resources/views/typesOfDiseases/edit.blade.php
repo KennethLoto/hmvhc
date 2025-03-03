@@ -103,8 +103,8 @@
 
                             <x-primary-button type="submit"
                                 class="flex items-center gap-2 text-white hover:text-white">
-                                <span>Save Changes</span>
                                 <x-heroicon-o-check-badge class="w-5 h-5 inline" />
+                                <span>Save Changes</span>
                             </x-primary-button>
                         </div>
                     </form>

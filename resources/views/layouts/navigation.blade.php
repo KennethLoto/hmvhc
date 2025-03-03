@@ -9,7 +9,7 @@
                         <x-application-logo class="h-10 w-auto text-gray-700" />
                     </a>
                     <!-- Title -->
-                    <span class="text-2xl font-bold text-gray-800">
+                    <span class="text-2xl semi-bold text-gray-700">
                         HMHC
                     </span>
                 </div>
