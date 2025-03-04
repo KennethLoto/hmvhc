@@ -83,7 +83,7 @@
         <!-- Pagination -->
         @if ($typesOfDiseases->isNotEmpty())
             <div class="mt-4">
-                {{ $typesOfDiseases->links() }}
+                {{ $typesOfDiseases->onEachSide(1)->links() }}
             </div>
         @endif
     </div>

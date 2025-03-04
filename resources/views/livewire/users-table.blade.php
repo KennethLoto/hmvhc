@@ -16,8 +16,7 @@
 
             <!-- Search Input with Icon (Fixed Alignment) -->
             <div class="relative w-full sm:w-48">
-                <x-heroicon-o-magnifying-glass
-                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <x-heroicon-o-magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input type="text" wire:model.live="search" class="border px-4 py-2 pl-10 rounded w-full"
                     placeholder="Search...">
             </div>
@@ -94,7 +93,7 @@
         <!-- Pagination -->
         @if ($users->isNotEmpty())
             <div class="mt-5">
-                {{ $users->links() }}
+                {{ $users->onEachSide(1)->links() }}
             </div>
         @endif
     </div>

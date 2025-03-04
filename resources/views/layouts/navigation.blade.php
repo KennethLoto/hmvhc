@@ -149,6 +149,10 @@
                         <x-heroicon-o-link-slash class="w-5 h-5 mr-2" />
                         {{ 'TYPES OF DISEASES' }}
                     </x-nav-link>
+                    <x-nav-link :href="route('diseasesData.index')" :active="request()->routeIs('diseasesData.index')">
+                        <x-heroicon-o-circle-stack class="w-5 h-5 mr-2" />
+                        {{ 'DISEASES DATA' }}
+                    </x-nav-link>
                 </div>
             </div>
         </div>
