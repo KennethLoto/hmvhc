@@ -6,10 +6,10 @@
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="h-10 w-auto text-gray-700" />
+                        <x-navbar-logo class="h-10 w-auto text-gray-700" />
                     </a>
                     <!-- Title -->
-                    <span class="text-2xl semi-bold text-gray-700">
+                    <span class="text-xl semi-bold text-gray-700">
                         HMHC
                     </span>
                 </div>
@@ -82,16 +82,20 @@
                 </div>
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index') ||
+                request()->routeIs('users.create') ||
+                request()->routeIs('users.edit')">
                 <div class="flex items-center">
                     <x-heroicon-o-user-group class="w-5 h-5 mr-2" />
                     <span>{{ 'USERS' }}</span>
                 </div>
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('typesOfDiseases.index')" :active="request()->routeIs('typesOfDiseases.index')">
+            <x-responsive-nav-link :href="route('typesOfDiseases.index')" :active="request()->routeIs('typesOfDiseases.index') ||
+                request()->routeIs('typesOfDiseases.create') ||
+                request()->routeIs('typesOfDiseases.edit')">
                 <div class="flex items-center">
-                    <x-heroicon-o-link-slash class="w-5 h-5 mr-2" />
+                    <x-heroicon-o-bolt-slash class="w-5 h-5 mr-2" />
                     <span>{{ 'TYPES OF DISEASES' }}</span>
                 </div>
             </x-responsive-nav-link>
@@ -146,7 +150,7 @@
                     <x-nav-link :href="route('typesOfDiseases.index')" :active="request()->routeIs('typesOfDiseases.index') ||
                         request()->routeIs('typesOfDiseases.create') ||
                         request()->routeIs('typesOfDiseases.edit')">
-                        <x-heroicon-o-link-slash class="w-5 h-5 mr-2" />
+                        <x-heroicon-o-bolt-slash class="w-5 h-5 mr-2" />
                         {{ 'TYPES OF DISEASES' }}
                     </x-nav-link>
                     <x-nav-link :href="route('diseasesData.index')" :active="request()->routeIs('diseasesData.index')">

@@ -7,7 +7,7 @@
                     <nav class="text-md mb-10">
                         <ol class="flex space-x-3 text-gray-500 items-center">
                             <li class="flex items-center">
-                                <x-heroicon-o-link-slash class="w-5 h-5 text-gray-400" />
+                                <x-heroicon-o-bolt-slash class="w-5 h-5 text-gray-400" />
                                 <span class="ml-1">Types of Diseases</span>
                             </li>
                             <li>/</li>

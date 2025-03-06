@@ -12,10 +12,19 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function dashboard()
+    {
+        $totalUsers = User::whereNotNull('email_verified_at')->count();
+        $verifiedMunicipalUsers = User::where('role', 'Municipal User')->whereNotNull('email_verified_at')->count();
+        $pendingMunicipalUsers = User::where('role', 'Municipal User')->whereNull('email_verified_at')->count();
+
+        return view('dashboard', compact('totalUsers', 'verifiedMunicipalUsers', 'pendingMunicipalUsers'));
+    }
+
     public function index()
     {
         $users = User::orderBy('created_at', 'desc')->get();
-        // $users = User::paginate(5);
         return view('users.index', compact('users'));
     }
 
@@ -66,7 +75,6 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        // Only hash and update password if a new one is provided
         if (!empty($data['password'])) {
             $data['password'];
         } else {

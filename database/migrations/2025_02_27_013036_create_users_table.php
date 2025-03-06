@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
-            $table->enum('role', ['Admin', 'Staff', 'Applicant'])->default('Applicant');
+            $table->enum('role', ['Admin', 'Municipal User'])->default('Municipal User');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -8,7 +8,7 @@
                         <!-- Breadcrumb Navigation -->
                         <ol class="flex items-center space-x-2 text-gray-600 mb-2 sm:0">
                             <li class="flex items-center">
-                                <x-heroicon-o-link-slash class="w-5 h-5" />
+                                <x-heroicon-o-bolt-slash class="w-5 h-5" />
                             </li>
                             <li>Types of Diseases</li>
                             <li>/</li>

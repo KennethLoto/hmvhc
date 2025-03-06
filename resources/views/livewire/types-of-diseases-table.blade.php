@@ -1,29 +1,49 @@
 <div class="mt-5">
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto sm:min-h-[275px] min-h-[375px]">
         <!-- Filter Controls -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 w-full sm:w-auto">
-                <label class="text-gray-600 text-sm sm:text-base">Entries per page:</label>
-                <select wire:model.live="perPage" class="border px-6 py-2 rounded w-full sm:w-auto">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
+            <!-- Per Page & Category Filter (Grouped) -->
+            <div class="flex flex-col md:flex-row md:items-center gap-2 w-full md:w-auto">
+                <!-- Per Page Dropdown -->
+                <div class="flex flex-col md:flex-row md:items-center gap-1">
+                    <label class="text-gray-600 text-sm">Entries per page:</label>
+                    <select wire:model.live="perPage" class="border px-4 py-2 rounded w-full md:w-auto">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+
+                <!-- Category Filter (Next to Per Page on Larger Screens) -->
+                <div class="flex flex-col md:flex-row md:items-center gap-1">
+                    <label class="text-gray-600 text-sm">Filter by Category:</label>
+                    <select wire:model.live="category" class="border px-4 py-2 rounded w-full md:w-auto">
+                        <option value="">All Categories</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category }}">{{ $category }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
-            <!-- Search Input with Icon -->
-            <div class="relative w-full sm:w-48">
-                <x-heroicon-o-magnifying-glass
-                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input type="text" wire:model.live="search" class="border px-4 py-2 pl-10 rounded w-full"
+            <!-- Search Input (Takes Full Width on Mobile) -->
+            <div class="w-full md:w-auto">
+                <input type="text" wire:model.live="search" class="border px-4 py-2 rounded w-full md:w-64"
                     placeholder="Search...">
             </div>
         </div>
 
         <!-- Responsive Table -->
         <div class="w-full overflow-x-auto bg-white shadow-md rounded-lg">
+            <div wire:loading
+                class="absolute left-1/2 -translate-x-1/2 translate-y-28 sm:translate-y-30 text-gray-600 font-semibold">
+                <div
+                    class="w-6 h-6 sm:w-8 sm:h-8 border-4 border-gray-600 border-t-transparent rounded-full animate-spin mx-auto mb-2">
+                </div>
+                <span>Loading, please wait...</span>
+            </div>
             <table class="table-auto min-w-full border-collapse">
                 <thead class="bg-gray-800 text-white">
                     <tr>
@@ -34,10 +54,10 @@
                         <th class="px-4 py-3 text-left border-2 text-sm w-24">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody wire:Loading.remove>
                     @if ($typesOfDiseases->isEmpty())
                         <tr>
-                            <td colspan="5" class="px-4 py-3 text-center text-gray-500 border-2">
+                            <td colspan="5" class="px-4 py-20 text-center text-gray-500 border-2">
                                 No data available.
                             </td>
                         </tr>
@@ -82,7 +102,7 @@
 
         <!-- Pagination -->
         @if ($typesOfDiseases->isNotEmpty())
-            <div class="mt-4">
+            <div class="mt-4" wire:Loading.remove>
                 {{ $typesOfDiseases->onEachSide(1)->links() }}
             </div>
         @endif

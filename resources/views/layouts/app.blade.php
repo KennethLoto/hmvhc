@@ -27,7 +27,7 @@
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
-        <x-preloader />
+        {{-- <x-preloader /> --}}
 
         <!-- Page Heading -->
         @isset($header)

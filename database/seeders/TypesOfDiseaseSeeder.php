@@ -13,8 +13,9 @@ class TypesOfDiseaseSeeder extends Seeder
      */
     public function run(): void
     {
-        TypesOfDisease::factory()
-            ->times(200)
-            ->create();
+        // TypesOfDisease::factory()
+        //     ->times(200)
+        //     ->create();
+        
     }
 }

@@ -7,7 +7,7 @@
                     <nav class="text-md mb-10">
                         <ol class="flex space-x-3 text-gray-500 items-center">
                             <li class="flex items-center">
-                                <x-heroicon-o-link-slash class="w-5 h-5 text-gray-400" />
+                                <x-heroicon-o-bolt-slash class="w-5 h-5 text-gray-400" />
                                 <span class="ml-1">Types of Diseases</span>
                             </li>
                             <li>/</li>
@@ -22,30 +22,31 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="grid grid-cols-5 gap-6">
-                            {{-- Column 1 (Name & Category) --}}
-                            <div class="col-span-2">
-                                {{-- Name of Disease --}}
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                            <!-- First Column (2/5) -->
+                            <div class="md:col-span-2">
                                 <div class="mb-4">
-                                    <label for="nameOfDisease" class="block text-gray-700 font-medium mb-1">Name of
-                                        Disease</label>
+                                    <label for="nameOfDisease" class="block text-gray-700 font-medium mb-1">
+                                        Name of Disease
+                                    </label>
                                     <input type="text" id="nameOfDisease" name="nameOfDisease"
-                                        value="{{ old('nameOfDisease', $typesOfDisease->nameOfDisease) }}"
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                         placeholder="e.g., Influenza (Flu)"
-                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                        value="{{ old('nameOfDisease', $typesOfDisease->nameOfDisease) }}">
                                     @error('nameOfDisease')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
 
-                                {{-- Category --}}
                                 <div x-data="{ showNewCategory: {{ $categories->isEmpty() || old('category', $typesOfDisease->category) === 'not_in_category' ? 'true' : 'false' }} }">
                                     @php
                                         $hasCategories = !$categories->isEmpty();
                                     @endphp
 
                                     @if ($hasCategories)
-                                        <label for="category" class="block text-gray-700 font-medium">Category</label>
+                                        <label for="category" class="block text-gray-700 font-medium">
+                                            Category
+                                        </label>
                                         <select id="category" name="category"
                                             class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none mb-4"
                                             x-on:change="showNewCategory = ($event.target.value === 'not_in_category')">
@@ -63,27 +64,27 @@
                                         </select>
                                     @endif
 
-                                    {{-- New Category Input --}}
-                                    <div x-show="showNewCategory" class="mt-2" x-cloak>
-                                        <label for="new_category" class="block text-gray-700 font-medium mb-1">New
-                                            Category</label>
-                                        <input type="text" id="new_category" name="category"
-                                            value="{{ old('category', $typesOfDisease->category == 'not_in_category' ? '' : $typesOfDisease->category) }}"
+                                    <div x-show="showNewCategory" class="mb-4 mt-2" x-cloak>
+                                        <label for="new_category" class="block text-gray-700 font-medium mb-1">
+                                            New Category
+                                        </label>
+                                        <input type="text" id="new_category" name="new_category"
+                                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                             placeholder="Enter new category"
-                                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                            value="{{ old('new_category', $typesOfDisease->category == 'not_in_category' ? '' : $typesOfDisease->category) }}">
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- Column 2 (Description) --}}
-                            <div class="col-span-3">
-                                {{-- Short Description --}}
+                            <!-- Second Column (3/5) -->
+                            <div class="md:col-span-3">
                                 <div class="mb-4">
-                                    <label for="shortDescription" class="block text-gray-700 font-medium mb-1">Short
-                                        Description</label>
+                                    <label for="shortDescription" class="block text-gray-700 font-medium mb-1">
+                                        Short Description
+                                    </label>
                                     <textarea id="shortDescription" name="shortDescription"
-                                        placeholder="e.g., A contagious respiratory illness caused by influenza viruses, leading to fever, cough, and body aches."
-                                        class="w-full border border-gray-300 rounded-lg px-3 h-32 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">{{ old('shortDescription', $typesOfDisease->shortDescription) }}</textarea>
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2 h-32 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        placeholder="e.g., A contagious respiratory illness caused by influenza viruses, leading to fever, cough, and body aches.">{{ old('shortDescription', $typesOfDisease->shortDescription) }}</textarea>
                                     @error('shortDescription')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
@@ -91,7 +92,6 @@
                             </div>
                         </div>
 
-                        {{-- Submit Button --}}
                         <div class="flex justify-end space-x-4">
                             <a href="{{ route('typesOfDiseases.index') }}">
                                 <x-secondary-button
