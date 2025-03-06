@@ -1,5 +1,5 @@
 <div class="mt-5">
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto min-h-[300px] sm:min-h-[275px]">
         <!-- Filter Controls -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4">
             <!-- Per Page Dropdown -->
@@ -24,6 +24,13 @@
 
         <!-- Responsive Table -->
         <div class="w-full overflow-x-auto bg-white shadow-md rounded-lg">
+            <div wire:loading
+                class="absolute left-1/2 -translate-x-1/2 translate-y-28 sm:translate-y-30 text-gray-600 font-semibold">
+                <div
+                    class="w-6 h-6 sm:w-8 sm:h-8 border-4 border-gray-600 border-t-transparent rounded-full animate-spin mx-auto mb-2">
+                </div>
+                <span>Loading, please wait...</span>
+            </div>
             <table class="table-auto min-w-full border-collapse">
                 <thead class="bg-gray-800 text-white">
                     <tr>
@@ -35,10 +42,10 @@
                         <th class="px-4 py-3 text-left border-2 text-sm">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody wire:Loading.remove>
                     @if ($users->isEmpty())
                         <tr>
-                            <td colspan="5" class="px-4 py-3 text-center text-gray-500 border-2">
+                            <td colspan="6" class="px-4 py-3 text-center text-gray-500 border-2">
                                 No data available.
                             </td>
                         </tr>
@@ -92,7 +99,7 @@
         </div>
         <!-- Pagination -->
         @if ($users->isNotEmpty())
-            <div class="mt-5">
+            <div class="mt-5" wire:Loading.remove>
                 {{ $users->onEachSide(1)->links() }}
             </div>
         @endif
