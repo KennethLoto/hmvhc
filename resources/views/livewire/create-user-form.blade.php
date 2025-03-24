@@ -1,4 +1,4 @@
-<div x-data="{ open: false }">
+<div x-data="{ open: {{ $errors->any() ? 'true' : 'false' }} }">
     {{-- Button to Open Modal --}}
     <x-primary-button @click="open = true" class="flex items-center gap-2">
         <x-heroicon-o-plus-circle class="w-5 h-5" />
@@ -15,7 +15,7 @@
 
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-medium mb-1">Name</label>
-                    <input type="text" id="name" name="name"
+                    <input type="text" id="name" name="name" value="{{ old('name') }}"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
                     @error('name')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -24,7 +24,7 @@
 
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 font-medium mb-1">Email</label>
-                    <input type="email" id="email" name="email"
+                    <input type="email" id="email" name="email" value="{{ old('email') }}"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
                     @error('email')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

@@ -38,42 +38,30 @@
                                     @enderror
                                 </div>
 
-                                <div x-data="{ showNewCategory: {{ $categories->isEmpty() || old('category', $typesOfDisease->category) === 'not_in_category' ? 'true' : 'false' }} }">
-                                    @php
-                                        $hasCategories = !$categories->isEmpty();
-                                    @endphp
-
-                                    @if ($hasCategories)
-                                        <label for="category" class="block text-gray-700 font-medium">
-                                            Category
-                                        </label>
-                                        <select id="category" name="category"
-                                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none mb-4"
-                                            x-on:change="showNewCategory = ($event.target.value === 'not_in_category')">
-                                            <option value="" hidden disabled>Select Category</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category }}"
-                                                    {{ old('category', $typesOfDisease->category) == $category ? 'selected' : '' }}>
-                                                    {{ ucfirst($category) }}
-                                                </option>
-                                            @endforeach
-                                            <option value="not_in_category"
-                                                {{ old('category', $typesOfDisease->category) == 'not_in_category' ? 'selected' : '' }}>
-                                                Not in Category
+                                <div x-data="{ showNewCategory: false }">
+                                    <label for="category" class="block text-gray-700 font-medium">Category</label>
+                                    <select id="category" name="category" class="w-full border rounded-lg px-3 py-2"
+                                        x-on:change="showNewCategory = ($event.target.value === 'new')">
+                                        <option value="" hidden>Select Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category }}"
+                                                {{ old('category', $typesOfDisease->category) == $category ? 'selected' : '' }}>
+                                                {{ ucfirst($category) }}
                                             </option>
-                                        </select>
-                                    @endif
+                                        @endforeach
+                                        <option value="new">New Category</option>
+                                    </select>
 
-                                    <div x-show="showNewCategory" class="mb-4 mt-2" x-cloak>
-                                        <label for="new_category" class="block text-gray-700 font-medium mb-1">
-                                            New Category
-                                        </label>
+                                    <!-- New Category Input Field -->
+                                    <div x-show="showNewCategory" class="mt-4">
+                                        <label for="new_category" class="block text-gray-700 font-medium">New
+                                            Category</label>
                                         <input type="text" id="new_category" name="new_category"
-                                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                            placeholder="Enter new category"
-                                            value="{{ old('new_category', $typesOfDisease->category == 'not_in_category' ? '' : $typesOfDisease->category) }}">
+                                            class="w-full border rounded-lg px-3 py-2" placeholder="Enter new category"
+                                            value="{{ old('new_category') }}">
                                     </div>
                                 </div>
+
                             </div>
 
                             <!-- Second Column (3/5) -->
@@ -100,7 +88,6 @@
                                     <span>Cancel</span>
                                 </x-secondary-button>
                             </a>
-
                             <x-primary-button type="submit"
                                 class="flex items-center gap-2 text-white hover:text-white">
                                 <x-heroicon-o-check-badge class="w-5 h-5 inline" />

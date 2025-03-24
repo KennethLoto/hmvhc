@@ -29,4 +29,4 @@ require __DIR__ . '/user.php';
 
 require __DIR__ . '/typesOfDisease.php';
 
-require __DIR__ . '/diseasesData.php';
+require __DIR__ . '/patientsInfo.php';
